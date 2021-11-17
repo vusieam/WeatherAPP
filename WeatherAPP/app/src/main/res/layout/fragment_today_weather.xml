@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/todayWeatherFragment"
+    tools:context=".views.fragments.TodayWeather">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="-16dp"
+            tools:layout_editor_absoluteY="-72dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/dvtwbgtop"
+                android:paddingBottom="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:id="@+id/tvCityName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/primusregular"
+                    android:text="Centurion"
+                    android:layout_marginTop="10dp"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageViewWeatherIcon"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/basesunny"
+                    android:contentDescription="@string/weather_icon_description"
+                    android:padding="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.953"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCityName"
+                    app:layout_constraintVertical_bias="0.134"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tvCurrentTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="54dp"
+                    android:fontFamily="@font/primusregular"
+                    android:text="55"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCityName" />
+
+                <TextView
+                    android:id="@+id/tvCurrentTempInWord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/primusregular"
+                    android:letterSpacing="0.1"
+                    android:text="@string/default_weather_condition"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.500"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCurrentTemperature"
+                    app:layout_constraintVertical_bias="0.054" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/dvtwbgbottom"
+                android:paddingTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvDayTempMin"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="start"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="start"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="start"
+                                android:layout_marginStart="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="start"
+                                android:text="@string/weather_min_temperature"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvDayTempCurrent"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal|center"
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="center_horizontal|center"
+                                android:text="25 \u00B0"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:text="@string/weather_current_temperature"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvDayTempMax"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="end"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="end"
+                                android:letterSpacing="0"
+                                android:text="27 \u00B0"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="end"
+                                android:layout_marginEnd="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="end"
+                                android:text="@string/weather_max_temperature"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/lineDividerBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/weekDayWeatherReadings"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/weekDayWeatherReadings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:isScrollContainer="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lineDividerBase">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <TextView
+                                android:id="@+id/tvDayOneWeekDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="start"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="start|center_vertical"
+                                android:text="Wednesday"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/imgDayOneTempIcon"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_centerInParent="true"
+                                    android:contentDescription="@string/weather_icon_description"
+                                    android:padding="1dp" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <TextView
+                                android:id="@+id/tvDayOneTempValue"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="end"
+                                android:layout_marginEnd="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="end|center_vertical"
+                                android:text="@string/weather_min_temperature"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <TextView
+                                android:id="@+id/tvDayTwoWeekDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="start|center_vertical"
+                                android:text="Thursday"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/imgDayTwoTempIcon"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_centerInParent="true"
+                                    android:contentDescription="@string/weather_icon_description"
+                                    android:padding="1dp" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <TextView
+                                android:id="@+id/tvDayTwoTempValue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_marginEnd="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="end|center_vertical"
+                                android:text="@string/weather_min_temperature"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <TextView
+                                android:id="@+id/tvDayThreeWeekDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="start"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="start|center_vertical"
+                                android:text="Friday"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/imgDayThreeTempIcon"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_centerInParent="true"
+                                    android:contentDescription="@string/weather_icon_description"
+                                    android:padding="1dp" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <TextView
+                                android:id="@+id/tvDayThreeTempValue"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="end"
+                                android:layout_marginEnd="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="end|center_vertical"
+                                android:text="@string/weather_min_temperature"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <TextView
+                                android:id="@+id/tvDayFourWeekDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="start|center_vertical"
+                                android:text="Saturday"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/imgDayFourTempIcon"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_centerInParent="true"
+                                    android:contentDescription="@string/weather_icon_description"
+                                    android:padding="1dp" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <TextView
+                                android:id="@+id/tvDayFourTempValue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_marginEnd="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="end|center_vertical"
+                                android:text="@string/weather_min_temperature"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+                            <TextView
+                                android:id="@+id/tvDayFiveWeekDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="start|center_vertical"
+                                android:text="Sunday"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/imgDayFiveTempIcon"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_centerInParent="true"
+                                    android:contentDescription="@string/weather_icon_description"
+                                    android:padding="1dp" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <TextView
+                                android:id="@+id/tvDayFiveTempValue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_marginEnd="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/primusregular"
+                                android:gravity="end|center_vertical"
+                                android:text="@string/weather_min_temperature"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

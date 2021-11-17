@@ -1,0 +1,59 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlinVersion = '1.5.31'
+
+    repositories {
+        google()
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        //classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+
+
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+//plugins{
+//    kotlin("android") version "1.4.20" apply false
+//}
+
+//region import dependency library versions
+ext{
+    activityVersion = '1.4.0'
+    appCompactionVersion = '1.3.1'
+    constraintlayoutVersion = '2.1.1'
+    coreTestingVersion = '2.1.0'
+    coroutinesVersion = '1.5.0'
+    lifecycleVersion = '2.4.0'
+    materialVersion = '1.4.0'
+    roomVersion = '2.3.0'
+    sqlcipherVersion="4.4.2"
+    recyclerviewVersion = '1.3.0-alpha01'
+    cardviewVersion = '1.0.0'
+
+    retrofitVersion = "2.9.0"
+    lottieVersion = "3.4.0"
+
+    //region Google dependency library versions
+    gsonVersion = '2.8.8'
+    volleyVersion = '1.2.1'
+    //endregion
+
+    //region Testing dependency library version
+    junitVersion = '4.13.2'
+    espressoVersion = '3.4.0'
+    androidxJunitVersion = '1.1.3'
+    googleTruthVersion = '1.1.2'
+    //endregion
+}
+//endregion

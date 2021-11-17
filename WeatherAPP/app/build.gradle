@@ -1,0 +1,124 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    //id 'kotlinx-serialization'
+//    id 'kotlin-parcelize'
+    //id 'org.jetbrains.kotlin.plugin.parcelize'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "co.sz.vusieam.mobileweathertest"
+        minSdk 22
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        /*debug{
+            debuggable true
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }*/
+        release {
+            /*debuggable false
+            shrinkResources false*/
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:1.7.0"
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompactionVersion"
+    implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
+
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayoutVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    testImplementation "com.google.truth:truth:$rootProject.googleTruthVersion"
+
+    //region Testing library dependencies
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
+    androidTestImplementation ("androidx.test.espresso:espresso-core:$rootProject.espressoVersion",{
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation "com.google.truth:truth:$rootProject.googleTruthVersion"
+    //androidTestImplementation 'androidx.test.ext:truth:1.4.0'
+
+    //endregion
+
+
+    //region Recyclerview and cardView
+    implementation "androidx.cardview:cardview:$rootProject.cardviewVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerviewVersion"
+    //endregion
+
+    //region lifecycle dependencies
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycleVersion"
+    //endregion
+
+    //region room database dependencies
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+    //endregion
+
+    //region importing zetetic database dependencies for database encryption
+    implementation "net.zetetic:android-database-sqlcipher:$rootProject.sqlcipherVersion"
+    //implementation "androidx.sqlite:sqlite:2.0.1"
+    //endregion
+
+
+
+    //region importing google gson dependencies to serialize object to json structure
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation "com.android.volley:volley:$rootProject.volleyVersion"
+    //implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0"
+    //endregion
+
+    //region Google maps dependency
+    implementation "com.google.android.gms:play-services-location:18.0.0"
+    implementation "com.google.android.gms:play-services-maps:18.0.0"
+
+    //endregion
+
+    //region Retrofit dependencies
+//    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+//    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+//    implementation 'com.squareup.okhttp3:logging-interceptor:4.5.0'
+    //endregion
+
+    //region External dialogs dependency
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    //endregion
+
+
+}

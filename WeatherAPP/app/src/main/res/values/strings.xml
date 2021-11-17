@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="degree_symbol">%1$s \u00B0</string>
+    <string name="default_temperature">22 \u00B0</string>
+    <string name="weather_icon_description">Weather Image Indicator</string>
+    <string name="default_weather_condition">Sunny</string>
+    <string name="weather_min_temperature">min</string>
+    <string name="weather_current_temperature">current</string>
+    <string name="weather_max_temperature">max</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="app_menu_header">Mobile Weather</string>
+    <string name="missing_permissions_heading">Please grant the app the following permissions: </string>
+    <string name="missing_permissions_internet">1. Internet access</string>
+    <string name="missing_permissions_location">2. Location service permission granted.</string>
+    <string name="open_maps">Open Maps</string>
+    <string name="view_details">View details</string>
+    <string name="default_week_day">Sunday</string>
+    <string name="hint_city_name">City Name</string>
+    <string name="title_activity_google_maps_preview">GoogleMapsPreviewActivity</string>
+    <string name="nav_favourites_on_map_item">Favourites on Map</string>
+    <string name="nav_favourites_item">Favourites</string>
+    <string name="nav_home_item">Home</string>
+    <string name="grant_permissions">Grant app permissions</string>
+    <string name="permission_granted_yes">Permission granted. Select Home on the menu to view weather or restart application</string>
+    <string name="permission_granted_no">You have chosen not to grant permission.</string>
+</resources>
