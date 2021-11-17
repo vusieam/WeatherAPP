@@ -19,7 +19,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.navigation.NavigationView
+    <!--<com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_menu_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -29,6 +29,6 @@
         app:headerLayout="@layout/nav_menu_header"
         app:menu="@menu/nav_menu_layout"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"/>
+        android:fitsSystemWindows="true"/>-->
 
 </androidx.drawerlayout.widget.DrawerLayout>

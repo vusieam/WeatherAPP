@@ -3,6 +3,7 @@ package co.sz.vusieam.mobileweathertest.views.activities
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application))
         .get(WeatherViewModel::class.java)
         initialiseComponents()
+        AppInMemoryData.activity = this
         checkLocationService()
     }
 
@@ -251,6 +253,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 initialiseComponents()
                 setToolBarTittle("Today Weather")
                 todayWeatherFragment = TodayWeather()
+                todayWeatherFragment.activity = this
+                AppInMemoryData.activity = this
                 changeFragment(todayWeatherFragment)
             }
         }

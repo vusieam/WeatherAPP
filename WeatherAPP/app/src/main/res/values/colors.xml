@@ -364,4 +364,8 @@
     <color name="dvt_900">#144973</color>
     <color name="dvt_yellow_900">#f2ba17</color>
     <color name="dvt_sunny_900">#ef9d26</color>
+
+    <color name="sunny_900">#47AB2F</color>
+    <color name="cloudy_900">#54717A</color>
+    <color name="rainy_900">#57575D</color>
 </resources>

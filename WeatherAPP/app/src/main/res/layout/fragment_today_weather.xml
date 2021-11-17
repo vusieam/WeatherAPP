@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/todayWeatherFragment"
+    android:background="@drawable/forestcloudy"
     tools:context=".views.fragments.TodayWeather">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/dvtwbgtop"
                 android:paddingBottom="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -51,24 +51,25 @@
 
                 <ImageView
                     android:id="@+id/imageViewWeatherIcon"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:background="@drawable/basesunny"
                     android:contentDescription="@string/weather_icon_description"
                     android:padding="15dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.953"
+                    app:layout_constraintHorizontal_bias="0.874"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvCityName"
-                    app:layout_constraintVertical_bias="0.134"
+                    app:layout_constraintVertical_bias="0.139"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
                     android:id="@+id/tvCurrentTemperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="54dp"
+                    android:layout_marginTop="40dp"
                     android:fontFamily="@font/primusregular"
                     android:text="55"
                     android:textColor="@color/white"
@@ -107,7 +108,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/dvtwbgbottom"
                 android:paddingTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

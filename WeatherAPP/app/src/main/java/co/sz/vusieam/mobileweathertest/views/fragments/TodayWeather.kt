@@ -3,6 +3,8 @@ package co.sz.vusieam.mobileweathertest.views.fragments
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
+import android.graphics.drawable.ColorDrawable
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
@@ -13,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import co.sz.vusieam.mobileweathertest.R
@@ -22,6 +25,7 @@ import co.sz.vusieam.mobileweathertest.models.entities.LiveCityInformation
 import co.sz.vusieam.mobileweathertest.models.entities.LiveExtendedWeatherInformation
 import co.sz.vusieam.mobileweathertest.models.entities.LiveWeatherInformation
 import co.sz.vusieam.mobileweathertest.utils.*
+import co.sz.vusieam.mobileweathertest.views.activities.MainActivity
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -29,12 +33,14 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.nav_menu_header.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class TodayWeather : Fragment() {
+    private lateinit var todayWeatherFragment: ConstraintLayout
     lateinit var imageViewWeatherIcon: ImageView
     lateinit var tvCurrentTemperature: TextView
     lateinit var tvCurrentTempInWord: TextView
@@ -42,6 +48,8 @@ class TodayWeather : Fragment() {
     private lateinit var tvDayTempCurrent: TextView
     private lateinit var tvDayTempMax: TextView
     lateinit var tvCityName: TextView
+
+    public lateinit var activity:MainActivity
 
     //region 5 days weather temperature
     private lateinit var tvDayOneWeekDay: TextView
@@ -83,12 +91,14 @@ class TodayWeather : Fragment() {
         initialiseControls(view)
         requestQueue = Volley.newRequestQueue(requireActivity())
         checkLocationService()
+
         return view
     }
 
 
     private fun initialiseControls(view:View){
         try{
+            todayWeatherFragment = view.findViewById(R.id.todayWeatherFragment)
             imageViewWeatherIcon = view.findViewById(R.id.imageViewWeatherIcon)
             imageViewWeatherIcon.post{imageViewWeatherIcon.setImageBitmap(null)}
 
@@ -311,6 +321,7 @@ class TodayWeather : Fragment() {
     }
 
 
+    @SuppressLint("ResourceType")
     private fun extractTodayTemperatureReadings(tempList:ArrayList<ListWeatherModel>){
         try{
             if(tempList.isNullOrEmpty())
@@ -375,6 +386,30 @@ class TodayWeather : Fragment() {
                     )
                 }
 
+                todayWeatherFragment.post {
+                    if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clear") {
+                        todayWeatherFragment.setBackgroundResource(R.drawable.baseweatherbg)
+                        AppInMemoryData.activity!!.supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(requireActivity(), R.color.sunny_900)))
+                        AppInMemoryData.activity!!.nav_menu_view.itemTextColor = ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), R.color.sunny_900))
+                        AppInMemoryData.activity!!.nav_menu_view.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), R.color.sunny_900))
+                        AppInMemoryData.activity!!.nav_header_container.setBackgroundColor(ContextCompat.getColor(requireActivity(), R.color.sunny_900))
+                    }
+                    if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clouds") {
+                        todayWeatherFragment.setBackgroundResource(R.drawable.forestcloudy)
+                        AppInMemoryData.activity!!.supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(requireActivity(), R.color.cloudy_900)))
+                        AppInMemoryData.activity!!.nav_menu_view.itemTextColor = ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), R.color.cloudy_900))
+                        AppInMemoryData.activity!!.nav_menu_view.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), R.color.cloudy_900))
+                        AppInMemoryData.activity!!.nav_header_container.setBackgroundColor(ContextCompat.getColor(requireActivity(), R.color.cloudy_900))
+                    }
+                    if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "rain") {
+                        todayWeatherFragment.setBackgroundResource(R.drawable.forestrainy)
+                        AppInMemoryData.activity!!.supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(requireActivity(), R.color.rainy_900)))
+                        AppInMemoryData.activity!!.nav_menu_view.itemTextColor = ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), R.color.rainy_900))
+                        AppInMemoryData.activity!!.nav_menu_view.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), R.color.rainy_900))
+                        AppInMemoryData.activity!!.nav_header_container.setBackgroundColor(ContextCompat.getColor(requireActivity(), R.color.rainy_900))
+                    }
+                }
+
                 AppInMemoryData.liveWeatherInfo!!.description = DVTHelperFunctions.getWeatherStatusName(newTempList[0].weather[0].main)
                 AppInMemoryData.liveWeatherInfo!!.temperature = Integer.parseInt(newTempList[0].main.temp.toString().substring(0, 2))
                 AppInMemoryData.liveWeatherInfo!!.temperature_feel = Integer.parseInt(newTempList[0].main.feels_like.toString().substring(0, 2))
@@ -437,13 +472,13 @@ class TodayWeather : Fragment() {
                         }
                         imgDayOneTempIcon.post {
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clear") {
-                                imgDayOneTempIcon.setBackgroundResource(R.drawable.daysunny)
+                                imgDayOneTempIcon.setBackgroundResource(R.drawable.clear)
                             }
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clouds") {
-                                imgDayOneTempIcon.setBackgroundResource(R.drawable.daycloudy)
+                                imgDayOneTempIcon.setBackgroundResource(R.drawable.partlysunny)
                             }
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "rain") {
-                                imgDayOneTempIcon.setBackgroundResource(R.drawable.dayrainy)
+                                imgDayOneTempIcon.setBackgroundResource(R.drawable.rain)
                             }
                         }
                     }
@@ -461,13 +496,13 @@ class TodayWeather : Fragment() {
                         }
                         imgDayTwoTempIcon.post {
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clear") {
-                                imgDayTwoTempIcon.setBackgroundResource(R.drawable.daysunny)
+                                imgDayTwoTempIcon.setBackgroundResource(R.drawable.clear)
                             }
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clouds") {
-                                imgDayTwoTempIcon.setBackgroundResource(R.drawable.daycloudy)
+                                imgDayTwoTempIcon.setBackgroundResource(R.drawable.partlysunny)
                             }
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "rain") {
-                                imgDayTwoTempIcon.setBackgroundResource(R.drawable.dayrainy)
+                                imgDayTwoTempIcon.setBackgroundResource(R.drawable.rain)
                             }
                         }
                     }
@@ -485,13 +520,13 @@ class TodayWeather : Fragment() {
                         }
                         imgDayThreeTempIcon.post {
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clear") {
-                                imgDayThreeTempIcon.setBackgroundResource(R.drawable.daysunny)
+                                imgDayThreeTempIcon.setBackgroundResource(R.drawable.clear)
                             }
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clouds") {
-                                imgDayThreeTempIcon.setBackgroundResource(R.drawable.daycloudy)
+                                imgDayThreeTempIcon.setBackgroundResource(R.drawable.partlysunny)
                             }
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "rain") {
-                                imgDayThreeTempIcon.setBackgroundResource(R.drawable.dayrainy)
+                                imgDayThreeTempIcon.setBackgroundResource(R.drawable.rain)
                             }
                         }
                     }
@@ -509,13 +544,13 @@ class TodayWeather : Fragment() {
                         }
                         imgDayFourTempIcon.post {
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clear") {
-                                imgDayFourTempIcon.setBackgroundResource(R.drawable.daysunny)
+                                imgDayFourTempIcon.setBackgroundResource(R.drawable.clear)
                             }
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clouds") {
-                                imgDayFourTempIcon.setBackgroundResource(R.drawable.daycloudy)
+                                imgDayFourTempIcon.setBackgroundResource(R.drawable.partlysunny)
                             }
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "rain") {
-                                imgDayFourTempIcon.setBackgroundResource(R.drawable.dayrainy)
+                                imgDayFourTempIcon.setBackgroundResource(R.drawable.rain)
                             }
                         }
                     }
@@ -533,13 +568,13 @@ class TodayWeather : Fragment() {
                         }
                         imgDayFiveTempIcon.post {
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clear") {
-                                imgDayFiveTempIcon.setBackgroundResource(R.drawable.daysunny)
+                                imgDayFiveTempIcon.setBackgroundResource(R.drawable.clear)
                             }
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clouds") {
-                                imgDayFiveTempIcon.setBackgroundResource(R.drawable.daycloudy)
+                                imgDayFiveTempIcon.setBackgroundResource(R.drawable.partlysunny)
                             }
                             if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "rain") {
-                                imgDayFiveTempIcon.setBackgroundResource(R.drawable.dayrainy)
+                                imgDayFiveTempIcon.setBackgroundResource(R.drawable.rain)
                             }
                         }
                     }
