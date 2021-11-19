@@ -351,7 +351,7 @@ class TodayWeather : Fragment() {
                     R.string.degree_symbol,
                     newTempList[0].main.temp_max.toString().substring(0, 2)
                 )
-                imageViewWeatherIcon.post {
+                /*imageViewWeatherIcon.post {
                     if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clear") {
                         imageViewWeatherIcon.setBackgroundResource(R.drawable.basesunny)
                     }
@@ -361,7 +361,7 @@ class TodayWeather : Fragment() {
                     if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "rain") {
                         imageViewWeatherIcon.setBackgroundResource(R.drawable.baserainny)
                     }
-                }
+                }*/
 
                 AppInMemoryData.liveWeatherInfo!!.temperature_max = Integer.parseInt(newTempList[0].main.temp_max.toString().substring(0, 2))
                 AppInMemoryData.liveWeatherInfo!!.date = newTempList[0].dt_txt
@@ -388,7 +388,7 @@ class TodayWeather : Fragment() {
 
                 todayWeatherFragment.post {
                     if (newTempList[0].weather[0].main.lowercase(Locale.getDefault()) == "clear") {
-                        todayWeatherFragment.setBackgroundResource(R.drawable.baseweatherbg)
+                        todayWeatherFragment.setBackgroundResource(R.drawable.forestsunny)
                         AppInMemoryData.activity!!.supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(requireActivity(), R.color.sunny_900)))
                         AppInMemoryData.activity!!.nav_menu_view.itemTextColor = ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), R.color.sunny_900))
                         AppInMemoryData.activity!!.nav_menu_view.itemIconTintList = ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), R.color.sunny_900))

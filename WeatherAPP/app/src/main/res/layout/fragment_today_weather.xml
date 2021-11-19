@@ -53,7 +53,6 @@
                     android:id="@+id/imageViewWeatherIcon"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="@drawable/basesunny"
                     android:contentDescription="@string/weather_icon_description"
                     android:padding="15dp"
                     android:visibility="gone"
